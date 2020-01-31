@@ -40,8 +40,9 @@
   {:level        :easy
    :use          '[when-first concat]
    :alternates   '[empty? seq? conj into]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (when-first [x coll] (concat [x] coll)))
 
 (defn five-point-someone
   "Returns :chetan-bhagat if y is 5.
@@ -50,8 +51,13 @@
   Otherwise it returns :universe"
   {:level        :easy
    :use          '[cond]
-   :implemented? false}
-  [x y])
+   :implemented? true}
+  [x y]
+  (cond
+    (= y 5) :chetan-bhagat
+    (= x 5) :satan-bhagat
+    (> x y) :greece
+    :else :universe))
 
 (defn conditions-apply
   "Given a collection of any length, returns:
