@@ -72,3 +72,24 @@
     (is (= [:x-greater-than-y :z-greater-than-x] (order-in-words 4 3 8))))
   (testing "z > x"
     (is (= [:z-greater-than-x] (order-in-words 2 3 8)))))
+
+(deftest zero-aliases-test
+  (testing "return :zero"
+    (is (= :zero (zero-aliases 0))))
+  (testing "return :empty"
+    (is (= :empty (zero-aliases []))))
+  (testing "return :empty"
+    (is (= :empty (zero-aliases ()))))
+  (testing "return :empty-set"
+    (is (= :empty-set (zero-aliases #{}))))
+  (testing "return :empty-map"
+    (is (= :empty-map (zero-aliases {}))))
+  (testing "return :empty-string"
+    (is (= :empty-string (zero-aliases ""))))
+  )
+
+(deftest zero-separated-palindrome-test
+  (testing "return (4 3 2 0 2 3 4)"
+    (is (= '(4 3 2 0 2 3 4) (zero-separated-palindrome [1 2 3]))))
+  (testing "return (2 3 4 0 4 3 2)"
+    (is (= '(2 3 4 0 4 3 2) (zero-separated-palindrome [3 2 1])))))

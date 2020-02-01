@@ -112,8 +112,15 @@
   \"\"  -> :empty-string"
   {:level        :easy
    :use          '[case]
-   :implemented? false}
-  [zero-like-value])
+   :implemented? true}
+  [zero-like-value]
+  (case zero-like-value
+    0 :zero
+    [] :empty
+    () :empty
+    #{} :empty-set
+    {} :empty-map
+    "" :empty-string))
 
 (defn zero-separated-palindrome
   "Given a sequence of numbers, increment the list
@@ -123,4 +130,7 @@
   {:level        :easy
    :use          '[as-> reverse]
    :implemented? false}
-  [coll])
+  [coll]
+  (as-> (map inc coll) coll
+        (flatten (conj coll 0 (reverse coll)))))
+
