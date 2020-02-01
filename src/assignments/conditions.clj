@@ -30,7 +30,7 @@
   Falsy values(false and nil) return :ashwathama"
   {:level        :easy
    :use          '[if-let]
-   :implemented? false}
+   :implemented? true}
   [x]
   (if-let [x x] x :ashwathama))
 
@@ -129,7 +129,7 @@
   [1 2 3] -> (4 3 2 0 2 3 4)"
   {:level        :easy
    :use          '[as-> reverse]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (as-> (map inc coll) coll
         (flatten (conj coll 0 (reverse coll)))))
