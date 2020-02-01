@@ -53,3 +53,22 @@
     (is (= :greece (five-point-someone 6 4))))
   (testing "return :universe"
     (is (= :universe (five-point-someone 8 8)))))
+
+(deftest repeat-and-truncate-test
+  (testing "with rep true and truncate true take 6"
+    (is (= '(0 1 2 3 0 1) (repeat-and-truncate (range 4) true true 6))))
+  (testing "with rep false truncate true 3"
+    (is (= '(0 1 2) (repeat-and-truncate (range 4) false true 3))))
+  (testing "with rep true truncate false 3"
+    (is (= '(0 1 0) (repeat-and-truncate (range 2) true false 3))))
+  (testing "with rep false truncate false 3"
+    (is (= '(0 1) (repeat-and-truncate (range 2) false false 3)))))
+
+
+(deftest order-in-words-test
+  (testing "x > y and y > z and z > x"
+    (is (= [:x-greater-than-y :y-greater-than-z] (order-in-words 4 3 2))))
+  (testing "x > y and z > x"
+    (is (= [:x-greater-than-y :z-greater-than-x] (order-in-words 4 3 8))))
+  (testing "z > x"
+    (is (= [:z-greater-than-x] (order-in-words 2 3 8)))))
