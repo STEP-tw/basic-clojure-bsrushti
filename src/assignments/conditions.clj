@@ -134,7 +134,7 @@
    :use          '[as-> reverse]
    :implemented? true}
   [coll]
-  (when (instance? Number coll)
-  (as-> (map inc coll) coll
-        (concat (reverse coll) (cons 0 coll)))))
+  (when (every? (fn [x] (instance? Number x)) coll)
+    (as-> (map inc coll) coll
+          (concat (reverse coll) (cons 0 coll)))))
 
