@@ -83,7 +83,8 @@
   (cond->> coll
            rep? (concat coll)
            truncate? (take n)
-           :else (take n)))
+           true (take n)
+           ))
 
 (defn order-in-words
   "Given x, y and z, returns a vector consisting of
