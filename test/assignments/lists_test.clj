@@ -19,6 +19,6 @@
   (testing "return length of coll as 4"
     (is (= 4 (count' [1 2 3 4])))))
 
-(deftest every?'-test
+(deftest reverse'-test
   (testing "reverse the list"
-    (is (= 4 (count' [1 2 3 4])))))
+    (is (= [4 3 2 1] (reverse' [1 2 3 4])))))
