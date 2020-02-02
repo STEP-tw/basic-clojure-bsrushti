@@ -28,3 +28,9 @@
     (is (= true (every?' even? [2 4]))))
   (testing "return false for non-even coll"
     (is (= false (every?' even? [1 2 4])))))
+
+(deftest some?'-test
+  (testing "return true when coll contains even element"
+    (is (= true (some?' even? [2 1 4]))))
+  (testing "return when coll do not contains even element"
+    (is (= false (some?' even? [1 3 5])))))
