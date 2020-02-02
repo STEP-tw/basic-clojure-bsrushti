@@ -7,7 +7,7 @@
   {:level        :medium
    :use          '[loop recur]
    :dont-use     '[map]
-   :implemented? false}
+   :implemented? true}
   [f & colls]
   (when (= 1 (count colls))
     (loop [coll (first colls)
@@ -24,7 +24,7 @@
   {:level        :easy
    :use          '[loop recur]
    :dont-use     '[filter]
-   :implemented? false}
+   :implemented? true}
   [pred coll]
   (loop [coll coll
          result []]
