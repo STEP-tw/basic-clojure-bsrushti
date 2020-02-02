@@ -6,7 +6,7 @@
    :use          '[when-not zero?]
    :implemented? true}
   [x y]
-  (when-not (zero? y) nil (/ x y)))
+  (when-not (zero? y) (/ x y)))
 
 (defn informative-divide
   "Returns the result of x/y unless y is 0. Returns :infinite when y is 0"
