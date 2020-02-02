@@ -136,3 +136,4 @@
   [coll]
   (as-> (map inc coll) coll
         (concat (reverse coll) (cons 0 coll))))
+
