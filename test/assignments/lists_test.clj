@@ -9,9 +9,12 @@
     (is (= [2 3 4] (map' inc [1 2 3])))))
 
 (deftest filter'-test
-  (testing "filter"
-    (testing "even?"
-      (is (= [2 4] (filter' even? [1 2 3 4])))))
-    (testing "odd?"
-      (is (= [1 3] (filter' odd? [1 2 3 4])))))
+  (testing "even?"
+    (is (= [2 4] (filter' even? [1 2 3 4]))))
+  (testing "odd?"
+    (is (= [1 3] (filter' odd? [1 2 3 4])))))
 
+
+(deftest count'-test
+  (testing "return length of coll as 4"
+    (is (= 4 (count' [1 2 3 4])))))
