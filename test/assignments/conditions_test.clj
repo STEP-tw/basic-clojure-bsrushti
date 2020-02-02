@@ -86,6 +86,8 @@
     (is (= :empty-map (zero-aliases {}))))
   (testing "return :empty-string"
     (is (= :empty-string (zero-aliases ""))))
+  (testing "return default :not-zero"
+    (is (= :not-zero (zero-aliases 123))))
   )
 
 (deftest zero-separated-palindrome-test
