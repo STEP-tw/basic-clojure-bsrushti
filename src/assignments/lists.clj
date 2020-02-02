@@ -64,7 +64,9 @@
    :use          '[reduce conj seqable? when]
    :dont-use     '[reverse]
    :implemented? false}
-  ([coll]))
+  [coll]
+  (when (seqable? coll)
+    (reduce (fn [x y] (conj x y)) '() coll)))
 
 (defn every?'
   "Implement your own version of every? that checks if every
