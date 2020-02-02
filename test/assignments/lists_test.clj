@@ -22,3 +22,9 @@
 (deftest reverse'-test
   (testing "reverse the list"
     (is (= [4 3 2 1] (reverse' [1 2 3 4])))))
+
+(deftest every?'-test
+  (testing "return true for even coll"
+    (is (= true (every?' even? [2 4]))))
+  (testing "return false for non-even coll"
+    (is (= false (every?' even? [1 2 4])))))
