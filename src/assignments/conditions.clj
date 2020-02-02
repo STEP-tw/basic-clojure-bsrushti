@@ -134,5 +134,4 @@
    :implemented? true}
   [coll]
   (as-> (map inc coll) coll
-        (flatten (conj coll 0 (reverse coll)))))
-
+        (concat (reverse coll) (cons 0 coll))))
