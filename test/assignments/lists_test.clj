@@ -50,4 +50,22 @@
 
 (deftest sum-of-adjacent-digits-test
   (testing "give sum of adjacent digits of a collection"
-    (is (= [3 5] (sum-of-adjacent-digits [1 2 3])))))
+    (is (= [3 5] (sum-of-adjacent-digits [1 2 3]))))
+  (testing "collection with single digit"
+    (is (= [] (sum-of-adjacent-digits [1])))))
+
+(deftest difference-test
+  (testing "difference of two set"
+    (is (= '(4 5) (difference [1 2 3] [1 2 3 4 5]))))
+  (testing "empty set"
+    (is (= '() (difference [1 2 3] [])))))
+
+(deftest union-test
+  (testing "union of two set"
+    (is (= '(1 2 3 4 5 6) (union [1 2 3] [4 5 6]))))
+  (testing "union of two same set"
+    (is (= '(1 2 3 1 2 3) (union [1 2 3] [1 2 3])))))
+
+(deftest dedupe'-test
+  (testing "remove duplicate adjacent elements"
+    (is (= '(1 2 3 0) (dedupe' [1 1 2 3 3 0])))))

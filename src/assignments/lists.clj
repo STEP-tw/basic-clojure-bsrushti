@@ -133,8 +133,9 @@
   {:level        :medium
    :use          '[lazy-seq conj let :optionally letfn]
    :dont-use     '[loop recur dedupe]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (map first (partition-by identity coll)))
 
 (defn sum-of-adjacent-digits
   "Given a collection, returns a map of the sum of adjacent digits.
@@ -174,8 +175,9 @@
   {:level        :easy
    :use          '[remove set]
    :dont-use     '[loop recur if]
-   :implemented? false}
-  [coll1 coll2])
+   :implemented? true}
+  [coll1 coll2]
+  (remove (set coll1) (set coll2)))
 
 (defn union
   "Given two collections, returns a new collection with elements from the second
@@ -184,8 +186,9 @@
   if elements repeat."
   {:level        :easy
    :use          '[remove into set ->>]
-   :implemented? false}
-  [coll1 coll2])
+   :implemented? true}
+  [coll1 coll2]
+  (into coll1 coll2))
 
 ;; points-around-origin is a def not a defn
 (def
