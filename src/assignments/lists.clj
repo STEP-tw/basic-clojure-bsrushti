@@ -9,13 +9,22 @@
    :dont-use     '[map]
    :implemented? true}
   [f & colls]
-  (when (= 1 (count colls))
-    (loop [coll (first colls)
-           result []]
-      (if (empty? coll)
-        result
-        (recur (rest coll) (conj result (f (first coll)))))))
-  )
+
+  (condp = (count colls)
+    1 (loop [coll (first colls)
+             result []]
+        (if (empty? coll)
+          result
+          (recur (rest coll) (conj result (f (first coll))))))
+
+    2 (loop [coll1 (first colls)
+             coll2 (second colls)
+             result []]
+
+        (if (or (empty? coll1) (empty? coll2))
+          result
+          (recur (rest coll1) (rest coll2)
+                 (conj result (f (first coll1) (first coll2))))))))
 
 (defn filter'
   "Implement a non-lazy version of filter that accepts a
