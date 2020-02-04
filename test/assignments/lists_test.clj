@@ -47,3 +47,7 @@
     (is (= true (ascending? [1 2 3]))))
   (testing "return false when coll elements are in descending order"
     (is (= false (ascending? [1 5 3])))))
+
+(deftest sum-of-adjacent-digits-test
+  (testing "give sum of adjacent digits of a collection"
+    (is (= [3 5] (sum-of-adjacent-digits [1 2 3])))))
