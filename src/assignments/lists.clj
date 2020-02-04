@@ -75,7 +75,7 @@
    :implemented? true}
   [coll]
   (when (seqable? coll)
-    (reduce (fn [x y] (conj x y)) '() coll)))
+    (reduce conj '() coll)))
 
 (defn every?'
   "Implement your own version of every? that checks if every
