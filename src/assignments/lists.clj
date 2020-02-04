@@ -20,7 +20,6 @@
     2 (loop [coll1 (first colls)
              coll2 (second colls)
              result []]
-
         (if (or (empty? coll1) (empty? coll2))
           result
           (recur (rest coll1) (rest coll2)
@@ -63,8 +62,9 @@
   [coll]
   (loop [coll coll
          counter 0]
-    (if (empty? coll) counter
-    (recur (rest coll) (inc counter)))))
+    (if (empty? coll)
+      counter
+      (recur (rest coll) (inc counter)))))
 
 (defn reverse'
   "Implement your own version of reverse that reverses a coll.
@@ -112,8 +112,9 @@
   {:level        :easy
    :use          '[partition every? partial apply <=]
    :dont-use     '[loop recur]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (apply <= coll))
 
 (defn distinct'
   "Implement your own lazy sequence version of distinct which returns

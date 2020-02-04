@@ -41,3 +41,9 @@
     (is (= true (some?' even? [2 1 4]))))
   (testing "return when coll do not contains even element"
     (is (= false (some?' even? [1 3 5])))))
+
+(deftest ascending?-test
+  (testing "return true when coll elements are in ascending order"
+    (is (= true (ascending? [1 2 3]))))
+  (testing "return false when coll elements are in descending order"
+    (is (= false (ascending? [1 5 3])))))
