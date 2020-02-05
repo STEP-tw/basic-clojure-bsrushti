@@ -107,3 +107,7 @@
 (deftest muted-thirds-test
   (testing "make every third element to 0"
     (is (= [1 2 0 4 15 0 7] (muted-thirds [1 2 8 4 15 2 7])))))
+
+(deftest third-or-fifth-test
+  (testing "return third or fifth element"
+    (is (= [1 4 0 7] (third-or-fifth [1 2 0 4 15 0 7])))))

@@ -170,12 +170,13 @@
 (def
   ^{:level        :easy
     :dont-use     '[loop recur for nth get]
-    :implemented? false}
+    :implemented? true}
   transpose
   "Transposes a given matrix.
   [[a b] [c d]] => [[a c] [b d]].
   Note this is a def. Not a defn.
-  Return a vector of vectors, not list of vectors or vectors of lists")
+  Return a vector of vectors, not list of vectors or vectors of lists"
+  (partial apply mapv vector))
 
 (defn difference
   "Given two collections, returns only the elements that are present
@@ -238,8 +239,14 @@
   elements whose index is either divisible by three or five"
   {:level        :easy
    :use          '[keep-indexed when :optionally map-indexed filter]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (let [predicate1 #(zero? (rem % 3))
+        predicate2 #(zero? (rem % 5))]
+    (keep-indexed (fn [i x]
+                    (when (or (predicate1 i)
+                              (predicate2 i)) x))
+                  coll)))
 
 (defn sqr-of-the-first
   "Given a collection, return a new collection that contains the
