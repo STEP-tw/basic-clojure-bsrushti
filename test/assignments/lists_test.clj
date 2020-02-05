@@ -111,3 +111,13 @@
 (deftest third-or-fifth-test
   (testing "return third or fifth element"
     (is (= [1 4 0 7] (third-or-fifth [1 2 0 4 15 0 7])))))
+
+(deftest distinct'-test
+  (testing "return distinct element"
+    (is (= [1 4 6 3 2] (distinct' [1 4 2 3 2 6])))))
+
+(deftest index-of-test
+  (testing "return index of given element"
+    (is (= 2 (index-of [1 2 3 4 5] 3))))
+  (testing "return -1 when element not found"
+    (is (= -1 (index-of [1 2 3 4 5] 300)))))

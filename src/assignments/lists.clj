@@ -131,8 +131,9 @@
   {:level        :medium
    :use          '[lazy-seq set conj let :optionally letfn]
    :dont-use     '[loop recur distinct]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (lazy-seq (set coll)))
 
 (defn dedupe'
   "Implement your own lazy sequence version of dedupe which returns
@@ -318,7 +319,14 @@
    :use          '[loop recur rest]
    :dont-use     '[.indexOf memfn]
    :implemented? false}
-  [coll n])
+  [coll n]
+  (loop [coll coll
+         result 0]
+    (cond
+      (empty? coll) -1
+      (= (first coll) n) result
+      :else (recur (rest coll) (inc result))
+      )))
 
 (defn validate-sudoku-grid
   "Given a 9 by 9 sudoku grid, validate it."
