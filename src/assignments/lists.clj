@@ -48,9 +48,17 @@
   {:level        :medium
    :use          '[loop recur]
    :dont-use     '[reduce]
-   :implemented? false}
-  ([f coll])
-  ([f init coll]))
+   :implemented? true}
+
+  ([f coll]
+   (loop [result (first coll)
+          coll (rest coll)]
+     (if (empty? coll)
+       result
+       (recur (f result (first coll)) (rest coll)))))
+
+  ([f init coll]
+   (reduce' f (cons init coll))))
 
 (defn count'
   "Implement your own version of count that counts the
@@ -208,16 +216,22 @@
   [[1 4] [1 3] [1 5] [2 4] [2 3] [2 5] [3 4]]"
   {:level        :easy
    :use          '[for]
-   :implemented? false}
-  [seq1 seq2])
+   :implemented? true}
+  [seq1 seq2]
+  (for [x seq1
+        y seq2
+        :while (not= x y)]
+    [x y]))
 
 (defn double-up
   "Given a collection, return a new collection that contains
   each element repeated twice"
   {:level        :easy
    :use          '[mapcat partial repeat :optionally vector]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (def repeat-twice (partial repeat 2))
+  (mapcat repeat-twice coll))
 
 (defn third-or-fifth
   "Given a collection return a new collection that contains
@@ -234,8 +248,10 @@
   [4 5 6] => [16 16 16]"
   {:level        :easy
    :use          '[map constantly let]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (let [sqr-of-the-first-ele (constantly (* (first coll) (first coll)))]
+    (map sqr-of-the-first-ele coll)))
 
 (defn russian-dolls
   "Given a collection and a number, wrap each element in a nested vector
@@ -256,8 +272,17 @@
   {:level        :easy
    :use          '[interleave split-at if rem concat take-last]
    :dont-use     '[loop recur map-indexed take drop]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (let [
+        number-of-elements (count coll)
+        splitted-coll (split-at (quot number-of-elements 2) coll)
+        result (interleave (first splitted-coll) (second splitted-coll))
+        ]
+
+    (if (= 1 (rem number-of-elements 2))
+      (concat result (take-last 1 coll))
+      result)))
 
 (defn muted-thirds
   "Given a sequence of numbers, make every third element
@@ -266,8 +291,9 @@
   {:level        :easy
    :use          '[map cycle]
    :dont-use     '[loop recur map-indexed take take-nth]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (map * coll (cycle [1 1 0])))
 
 (defn palindrome?
   "Implement a recursive palindrome check of any given sequence"

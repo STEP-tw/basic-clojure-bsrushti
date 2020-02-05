@@ -40,7 +40,9 @@
   (testing "return true when coll contains even element"
     (is (= true (some?' even? [2 1 4]))))
   (testing "return when coll do not contains even element"
-    (is (= false (some?' even? [1 3 5])))))
+    (is (= false (some?' even? [1 3 5]))))
+  (testing "return when coll do not contains even element"
+    (is (= false (some?' even? [])))))
 
 (deftest ascending?-test
   (testing "return true when coll elements are in ascending order"
@@ -69,3 +71,39 @@
 (deftest dedupe'-test
   (testing "remove duplicate adjacent elements"
     (is (= '(1 2 3 0) (dedupe' [1 1 2 3 3 0])))))
+
+(deftest reduce'-test
+  (testing "without accumulator"
+    (testing "return sum of elements"
+      (is (= 6 (reduce' + [1 2 3]))))
+    (testing "return subtraction of elements"
+      (is (= -4 (reduce' - [1 2 3])))))
+
+  (testing "with accumulator"
+    (testing "return mul of elements"
+      (is (= 0 (reduce' * 0 [1 2 3]))))
+    (testing "return subtraction of elements"
+      (is (= -1 (reduce' - 5 [1 2 3]))))))
+
+(deftest cross-product-test
+  (testing "return cross-product"
+    (is (= [[1 4] [1 3] [1 5] [2 4] [2 3] [2 5] [3 4]]
+           (cross-product [1 2 3] [4 3 5])))))
+
+(deftest double-up-test
+  (testing "repeating each element of coll twice"
+    (is (= '(1 1 2 2 3 3) (double-up [1 2 3])))))
+
+(deftest sqr-of-the-first-test
+  (testing "return same number of square of first element"
+    (is (= [4 4 4] (sqr-of-the-first [2 3 4])))))
+
+(deftest split-comb-test
+  (testing "even number coll"
+    (is (= [1 3 2 4] (split-comb [1 2 3 4]))))
+  (testing "odd number coll"
+    (is (= [1 3 2 4 5] (split-comb [1 2 3 4 5])))))
+
+(deftest muted-thirds-test
+  (testing "make every third element to 0"
+    (is (= [1 2 0 4 15 0 7] (muted-thirds [1 2 8 4 15 2 7])))))
