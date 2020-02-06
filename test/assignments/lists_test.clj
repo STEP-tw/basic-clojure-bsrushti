@@ -125,7 +125,13 @@
     (is (= -1 (index-of [1 2 3 4 5] 300)))))
 
 (deftest palindrome?-test
-  (testing "pallindrome collection"
+  (testing "palindrome collection"
     (is (= true (palindrome? [1 2 3 2 1]))))
-  (testing "not a pallindrome collection"
+  (testing "not a palindrome collection"
     (is (= false (palindrome? [1 2 2 3 1])))))
+
+(deftest russian-dolls-test
+  (testing "testing [1 2 3] 3"
+    (is (= [[[1]] [[2]] [[3]]] (russian-dolls [1 2 3] 3))))
+  (testing "testing [1 2 3] 1"
+    (is (= [1 2 3] (russian-dolls [1 2 3] 1)))))

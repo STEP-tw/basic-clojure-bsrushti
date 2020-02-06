@@ -267,8 +267,11 @@
   {:level        :medium
    :use          '[iterate mapv partial vector drop first ->>]
    :dont-use     '[for loop recur reduce]
-   :implemented? false}
-  [coll nesting-factor])
+   :implemented? true}
+  [coll nesting-factor]
+  (letfn [(mapper [nesting-factor element]
+            (last (take nesting-factor (iterate vector element))))]
+    (mapv (partial mapper nesting-factor) coll)))
 
 (defn split-comb
   "Given a collection, return a new sequence where the first
@@ -320,7 +323,7 @@
   {:level        :easy
    :use          '[loop recur rest]
    :dont-use     '[.indexOf memfn]
-   :implemented? false}
+   :implemented? true}
   [coll n]
   (loop [coll coll
          result 0]
