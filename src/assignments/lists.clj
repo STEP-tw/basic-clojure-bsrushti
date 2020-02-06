@@ -9,7 +9,6 @@
    :dont-use     '[map]
    :implemented? true}
   [f & colls]
-
   (condp = (count colls)
     1 (loop [coll (first colls)
              result []]
@@ -232,8 +231,8 @@
    :use          '[mapcat partial repeat :optionally vector]
    :implemented? true}
   [coll]
-  (def repeat-twice (partial repeat 2))
-  (mapcat repeat-twice coll))
+  (let [repeat-twice (partial repeat 2)]
+   (mapcat repeat-twice coll)))
 
 (defn third-or-fifth
   "Given a collection return a new collection that contains
@@ -242,11 +241,10 @@
    :use          '[keep-indexed when :optionally map-indexed filter]
    :implemented? true}
   [coll]
-  (let [predicate1 #(zero? (rem % 3))
-        predicate2 #(zero? (rem % 5))]
+  (let [is-divisible-by (comp zero? rem)]
     (keep-indexed (fn [i x]
-                    (when (or (predicate1 i)
-                              (predicate2 i)) x))
+                    (when (or (is-divisible-by i 3)
+                              (is-divisible-by i 5)) x))
                   coll)))
 
 (defn sqr-of-the-first
@@ -258,8 +256,9 @@
    :use          '[map constantly let]
    :implemented? true}
   [coll]
-  (let [sqr-of-the-first-ele (constantly (* (first coll) (first coll)))]
-    (map sqr-of-the-first-ele coll)))
+  (let [first-ele (first coll)
+        sqr (constantly (*  first-ele first-ele))]
+    (map sqr coll)))
 
 (defn russian-dolls
   "Given a collection and a number, wrap each element in a nested vector
@@ -282,12 +281,10 @@
    :dont-use     '[loop recur map-indexed take drop]
    :implemented? true}
   [coll]
-  (let [
-        number-of-elements (count coll)
+  (let [number-of-elements (count coll)
         splitted-coll (split-at (quot number-of-elements 2) coll)
-        result (interleave (first splitted-coll) (second splitted-coll))
-        ]
-
+        result (apply interleave splitted-coll)]
+    
     (if (= 1 (rem number-of-elements 2))
       (concat result (take-last 1 coll))
       result)))
@@ -325,8 +322,7 @@
     (cond
       (empty? coll) -1
       (= (first coll) n) result
-      :else (recur (rest coll) (inc result))
-      )))
+      :else (recur (rest coll) (inc result)))))
 
 (defn validate-sudoku-grid
   "Given a 9 by 9 sudoku grid, validate it."

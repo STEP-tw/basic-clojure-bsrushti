@@ -69,8 +69,10 @@
     (is (= '(1 2 3 1 2 3) (union [1 2 3] [1 2 3])))))
 
 (deftest dedupe'-test
-  (testing "remove duplicate adjacent elements"
-    (is (= '(1 2 3 0) (dedupe' [1 1 2 3 3 0])))))
+  (testing "adjacent duplicate elements"
+    (is (= '(1 2 3 0) (dedupe' [1 1 2 3 3 0]))))
+  (testing "non-adjacent duplicate elements"
+    (is (= '(1 2 3 0 2) (dedupe' [1 1 2 3 3 0 2])))))
 
 (deftest reduce'-test
   (testing "without accumulator"

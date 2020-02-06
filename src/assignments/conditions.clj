@@ -119,8 +119,7 @@
   [zero-like-value]
   (case zero-like-value
     0 :zero
-    [] :empty
-    () :empty
+    ([] '()) :empty
     #{} :empty-set
     {} :empty-map
     "" :empty-string
@@ -136,7 +135,7 @@
    :use          '[as-> reverse]
    :implemented? true}
   [coll]
-  (when (every? (fn [x] (instance? Number x)) coll)
+  (when (every? (partial instance? Number) coll)
     (as-> (map inc coll) coll
           (concat (reverse coll) (cons 0 coll)))))
 
