@@ -85,7 +85,6 @@
   (cond->> coll
            rep? (concat coll)
            truncate? (take n)
-           true (take n)
            ))
 
 (defn order-in-words

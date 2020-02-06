@@ -60,7 +60,7 @@
   (testing "with rep false truncate true 3"
     (is (= '(0 1 2) (repeat-and-truncate (range 4) false true 3))))
   (testing "with rep true truncate false 3"
-    (is (= '(0 1 0) (repeat-and-truncate (range 2) true false 3))))
+    (is (= '(0 1 0 1) (repeat-and-truncate (range 2) true false 3))))
   (testing "with rep false truncate false 3"
     (is (= '(0 1) (repeat-and-truncate (range 2) false false 3)))))
 
