@@ -305,8 +305,13 @@
   {:level        :easy
    :use          '[empty? loop recur butlast rest]
    :dont-use     '[reverse]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (let [result (loop [coll coll
+                      result []]
+                 (if (empty? coll) result
+                                   (recur (butlast coll) (conj result (last coll)))))]
+    (if (= result coll) true false)))
 
 (defn index-of
   "index-of takes a sequence and an element and finds the index

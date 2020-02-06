@@ -123,3 +123,9 @@
     (is (= 2 (index-of [1 2 3 4 5] 3))))
   (testing "return -1 when element not found"
     (is (= -1 (index-of [1 2 3 4 5] 300)))))
+
+(deftest palindrome?-test
+  (testing "pallindrome collection"
+    (is (= true (palindrome? [1 2 3 2 1]))))
+  (testing "not a pallindrome collection"
+    (is (= false (palindrome? [1 2 2 3 1])))))
