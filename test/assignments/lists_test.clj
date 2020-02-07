@@ -135,3 +135,8 @@
     (is (= [[[1]] [[2]] [[3]]] (russian-dolls [1 2 3] 3))))
   (testing "testing [1 2 3] 1"
     (is (= [1 2 3] (russian-dolls [1 2 3] 1)))))
+
+(deftest points-around-origin-test
+  (testing "return 8 points around origin"
+    (is (= '([-1 -1] [-1 0] [-1 1] [0 -1] [0 1] [1 -1] [1 0] [1 1])
+           (points-around-origin)))))

@@ -95,3 +95,14 @@
     (is (= '(4 3 2 0 2 3 4) (zero-separated-palindrome [1 2 3]))))
   (testing "return (2 3 4 0 4 3 2)"
     (is (= '(2 3 4 0 4 3 2) (zero-separated-palindrome [3 2 1])))))
+
+(deftest conditions-apply-test
+  (testing "return :wonder-woman"
+    (is (= :wonder-woman (conditions-apply [1 2 3]))))
+  (testing "return [:a :b :c]"
+    (is (= :durga (conditions-apply [:a :b :c :d]))))
+  (testing "return :cleopatra"
+    (is (= :cleopatra (conditions-apply [[2 3] [4 5] [6 7]]))))
+  (testing "return :tuntun"
+    (is (= :tuntun (conditions-apply [1 2 3 1])))))
+
